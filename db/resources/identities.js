@@ -26,5 +26,13 @@ module.exports = async () => {
       role: chance.pickone(roles),
       username: chance.string({ length: 8 }),
     },
+    // TODO: remove this
+    {
+      email: chance.email(),
+      name: chance.name(),
+      password: hashSync('supersecretpassword'),
+      role: chance.pickone(roles),
+      username: chance.string({ length: 8 }),
+    },
   ];
 };
