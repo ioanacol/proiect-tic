@@ -1,8 +1,10 @@
 const identities = require('./seeds/001_identities');
-const posts = require('./seeds/002_posts');
+const comments = require('./seeds/002_comments');
+const posts = require('./seeds/003_posts');
 
 const seed = async () => {
   await identities.seed();
+  await comments.seed();
   await posts.seed();
 };
 

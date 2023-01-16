@@ -1,5 +1,6 @@
 const chance = require('../../lib/chance');
 const { hashSync } = require('bcryptjs');
+const { randomUsername } = require('../../functions');
 
 module.exports = async () => {
   const roles = ['admin', 'client'];
@@ -10,21 +11,21 @@ module.exports = async () => {
       name: 'Ioana Colceag',
       password: hashSync('supersecretpassword'),
       role: 'admin',
-      username: 'ioana.colceag',
+      username: 'ioanacolceag',
     },
     {
       email: chance.email(),
       name: chance.name(),
       password: hashSync('supersecretpassword'),
       role: chance.pickone(roles),
-      username: chance.string({ length: 8 }),
+      username: randomUsername(),
     },
     {
       email: chance.email(),
       name: chance.name(),
       password: hashSync('supersecretpassword'),
       role: chance.pickone(roles),
-      username: chance.string({ length: 8 }),
+      username: randomUsername(),
     },
   ];
 };
