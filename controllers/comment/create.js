@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     throw error(404, 'Missing required params');
   }
 
-  const { date, author, content} = req.body;
+  const { date, author, content } = req.body;
   const db = initializeFirestore();
   const commentRef = db.collection('comments');
   const snapshot = await commentRef
