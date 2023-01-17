@@ -1,9 +1,10 @@
 const { error, initializeFirestore, toDateString } = require('../../functions');
 
 module.exports = async (req, res) => {
+  const { content } = req.body;
   const { id } = req.params;
   const { username } = req.user;
-  if (!id || !username) {
+  if (!content || !id || !username) {
     throw error(404, 'Missing required params');
   }
 
@@ -13,23 +14,23 @@ module.exports = async (req, res) => {
   if (!doc.exists) {
     throw error(404, 'Post not found');
   }
-  if (doc.data().author !== username) {
-    throw error(400, 'Not allowed to update comment');
-  }
+  const data = doc.data();
 
-  const payload = {
+  const comment = {
+    author: username,
+    content,
     date: toDateString(new Date()),
   };
-  const { content, title } = req.body;
-  if (content) {
-    payload.content = content;
-  }
-  if (title) {
-    payload.title = title;
+
+  const commentsRef = db.collection('comments');
+  const response = await commentsRef.add(comment);
+  if (!response.id) {
+    throw error(500, 'Failed to create comment');
   }
 
-  await postsRef.update(payload);
-  const data = (await postsRef.get()).data();
+  comment.id = response.id;
+  data.comments.push(comment);
+  await postsRef.update(data);
 
-  return res.status(200).json({ data, message: 'Post updated' });
+  return res.status(200).json(data);
 };

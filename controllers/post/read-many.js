@@ -1,10 +1,9 @@
-const { initializeFirestore, error } = require('../../functions');
+const { initializeFirestore } = require('../../functions');
 
 module.exports = async (req, res) => {
   const db = initializeFirestore();
   const postsRef = db.collection('posts');
-  let snapshot;
-  snapshot = await postsRef.get();
+  const snapshot = await postsRef.get();
   const data = snapshot.docs.map((doc) => doc.data());
 
   return res.status(200).json(data);

@@ -1,12 +1,6 @@
 const { Router } = require('express');
-const {
-  authenticate,
-  error,
-  errorHandler,
-  loading,
-  notFound,
-} = require('./middleware');
-const { identity, post, comment } = require('./routes');
+const { authenticate, errorHandler, notFound } = require('./middleware');
+const { comment, identity, post } = require('./routes');
 
 const router = Router();
 
@@ -14,14 +8,10 @@ const router = Router();
 router.all('/admin', authenticate);
 router.all('/admin/*', authenticate);
 
-// useful middleware for testing
-router.use(loading);
-router.use(error);
-
 // use the router instances defined
+router.use(comment);
 router.use(identity);
 router.use(post);
-router.use(comment);
 
 // matches any other HTTP method and route not matched before
 router.all('*', notFound);

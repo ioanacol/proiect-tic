@@ -1,4 +1,4 @@
-const { initializeFirestore } = require('../../functions');
+const { error, initializeFirestore } = require('../../functions');
 
 module.exports = async (req, res) => {
   const { id } = req.params;
@@ -10,8 +10,9 @@ module.exports = async (req, res) => {
   const postsRef = db.collection('posts').doc(id);
   const doc = await postsRef.get();
   if (!doc.exists) {
-    throw error(404, 'Resource not found');
+    throw error(404, 'Post not found');
   }
   const data = doc.data();
+
   return res.status(200).json(data);
 };

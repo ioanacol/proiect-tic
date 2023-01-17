@@ -1,9 +1,9 @@
+const Comment = require('./comment');
 const Identity = require('./identity');
 const Post = require('./post');
-const Comment = require('./comment');
 
 module.exports = {
+  Comment,
   Identity,
   Post,
-  Comment,
 };

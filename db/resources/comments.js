@@ -5,18 +5,18 @@ module.exports = async () => {
   return [
     {
       author: randomUsername(),
-      date: randomDate(),
       content: chance.sentence({ words: 10 }),
+      date: randomDate(),
     },
     {
       author: randomUsername(),
-      date: randomDate(),
       content: chance.sentence({ words: 10 }),
+      date: randomDate(),
     },
     {
       author: randomUsername(),
-      date: randomDate(),
       content: chance.sentence({ words: 10 }),
+      date: randomDate(),
     },
   ];
 };

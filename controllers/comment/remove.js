@@ -1,23 +1,24 @@
-const { initializeFirestore } = require('../../functions');
+const { error, initializeFirestore } = require('../../functions');
 
 module.exports = async (req, res) => {
   const { id } = req.params;
-  const { me } = req.user;
-  if (!id) {
+  const { username } = req.user;
+  if (!id || !username) {
     throw error(404, 'Missing required params');
   }
 
   const db = initializeFirestore();
-  const commentRef = db.collection('posts').doc(id);
-  const doc = await commentRef.get();
+  const commentsRef = db.collection('comments').doc(id);
+  const doc = await commentsRef.get();
   if (!doc.exists) {
-    throw error(404, 'Resource not found');
-  }
-  if (doc.data().identity.id !== me) {
-    throw error(400, 'Not allowed to remove comment');
+    throw error(404, 'Comment not found');
   }
   const data = doc.data();
-  await commentRef.delete();
+  if (data.author !== username) {
+    throw error(400, 'Not allowed to remove comment');
+  }
+
+  await commentsRef.delete();
 
   return res.status(200).json({ data, message: 'Comment removed' });
 };

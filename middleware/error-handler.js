@@ -7,7 +7,7 @@ module.exports = (err, req, res, next) => {
   if (!(err instanceof Error)) {
     return res.status(500).json({
       name: 'Error',
-      message: 'Unknown error',
+      message: 'Unknown Error',
     });
   }
 

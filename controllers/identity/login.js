@@ -25,14 +25,14 @@ module.exports = async (req, res) => {
     throw error(400, 'Your email or password are invalid');
   }
 
-  const { id, name, password: passwordFromDb, role } = identity;
+  const { id, name, password: passwordFromDb, role, username } = identity;
   const passwordsMatch = await bcrypt.compare(password, passwordFromDb);
   if (!passwordsMatch) {
     throw error(400, 'Your email or password are invalid');
   }
 
   // the JWT public data payload
-  const payload = { name, email, role, me: id };
+  const payload = { email, me: id, name, role, username };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '15m',

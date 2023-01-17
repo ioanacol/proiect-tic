@@ -1,9 +1,8 @@
 const { error, initializeFirestore } = require('../../functions');
 
 module.exports = async (req, res) => {
-  const { id } = req.params;
-  const { username } = req.user;
-  if (!id || !username) {
+  const { id, commentId } = req.params;
+  if (!id) {
     throw error(404, 'Missing required params');
   }
 
@@ -13,12 +12,11 @@ module.exports = async (req, res) => {
   if (!doc.exists) {
     throw error(404, 'Post not found');
   }
-  const data = doc.data();
-  if (data.author !== username) {
-    throw error(400, 'Not allowed to remove comment');
+  const { comments } = doc.data();
+  const comment = comments.find((comment) => comment.id === commentId);
+  if (!comment) {
+    throw error(404, 'Comment not found');
   }
 
-  await postsRef.delete();
-
-  return res.status(200).json({ data, message: 'Post removed' });
+  return res.status(200).json(comment);
 };

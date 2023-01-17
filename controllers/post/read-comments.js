@@ -7,12 +7,12 @@ module.exports = async (req, res) => {
   }
 
   const db = initializeFirestore();
-  const commentsRef = db.collection('comments').doc(id);
-  const doc = await commentsRef.get();
+  const postsRef = db.collection('posts').doc(id);
+  const doc = await postsRef.get();
   if (!doc.exists) {
-    throw error(404, 'Comment not found');
+    throw error(404, 'Post not found');
   }
-  const data = doc.data();
+  const { comments } = doc.data();
 
-  return res.status(200).json(data);
+  return res.status(200).json(comments);
 };

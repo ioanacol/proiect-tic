@@ -1,42 +1,21 @@
-const { pick } = require('lodash');
-const { initializeFirestore, error } = require('../../functions');
+const { error, initializeFirestore, toDateString } = require('../../functions');
 
 module.exports = async (req, res) => {
-  const { me } = req.user;
-  if (!me) {
+  const { content } = req.body;
+  const { username } = req.user;
+  if (!content || !username) {
     throw error(404, 'Missing required params');
   }
 
-  const { date, author, content } = req.body;
-  const db = initializeFirestore();
-  const commentRef = db.collection('comments');
-  const snapshot = await commentRef
-    .where('date', '==', date)
-    .where('author', '==', author)
-    .where('content', '==', content)
-    .where('identity.id', '==', me)
-    .get();
-  if (snapshot.size) {
-    throw error(409, 'An identical comment already exists');
-  }
-
-  const identitiesRef = db.collection('identities');
-  const doc = await identitiesRef.doc(me).get();
-  if (!doc.exists) {
-    throw error(404, 'Resource not found');
-  }
-
   const payload = {
-    identity: {
-      ...pick(doc.data(), ['date', 'author', 'content']),
-      id: doc.id,
-    },
-    date: date.trim(),
-    author: author.trim(),
-    content: content.trim(),
+    author: username,
+    content,
+    date: toDateString(new Date()),
   };
 
-  const response = await commentRef.add(payload);
+  const db = initializeFirestore();
+  const commentsRef = db.collection('comments');
+  const response = await commentsRef.add(payload);
   if (!response.id) {
     throw error(500, 'Failed to create comment');
   }
