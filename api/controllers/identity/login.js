@@ -54,5 +54,12 @@ module.exports = async (req, res) => {
     signed: true,
   });
 
-  return res.status(200).json({ token, message: 'Authentication successful' });
+  return res.status(200).json({
+    token,
+    message: 'Authentication successful',
+    expiresIn: 3600,
+    email,
+    idToken: token,
+    localId: id,
+  });
 };

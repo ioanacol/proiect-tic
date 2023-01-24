@@ -1,1 +1,1 @@
-# proiect-tic
+# tic-project
