@@ -14,9 +14,9 @@ module.exports = async (req, res) => {
     throw error(404, 'Post not found');
   }
   const data = doc.data();
-  if (data.author !== username) {
-    throw error(400, 'Not allowed to remove comment');
-  }
+  // if (data.author !== username) {
+  //   throw error(400, 'Not allowed to remove post');
+  // }
 
   await postsRef.delete();
 
