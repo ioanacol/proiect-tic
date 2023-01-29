@@ -50,6 +50,7 @@ export default createStore({
       localStorage.setItem("email", responseData.email);
       localStorage.setItem("token", responseData.idToken);
       localStorage.setItem("userId", responseData.localId);
+      localStorage.setItem("username", responseData.username);
 
       timer = setTimeout(function () {
         dispatch("logout");
@@ -65,6 +66,7 @@ export default createStore({
       localStorage.removeItem("email");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem("username");
 
       clearTimeout(timer);
 

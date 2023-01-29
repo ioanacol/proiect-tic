@@ -37,6 +37,12 @@ const routes = [
     name: "add-post",
     component: () => import("../views/posts/AddPostView.vue"),
   },
+  {
+    path: "/posts/:id/edit/:id/comment",
+    name: "comment-edit",
+    component: PostDetail,
+    props: true,
+  },
 ];
 
 const router = createRouter({

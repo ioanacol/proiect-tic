@@ -49,6 +49,7 @@ nav {
   background-color: #a6b1af;
   position: sticky;
   top: 0px;
+  z-index: 100;
 }
 
 button {

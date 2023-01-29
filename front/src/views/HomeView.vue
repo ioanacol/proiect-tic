@@ -4,7 +4,7 @@
     <h1>POSTS</h1>
     <div class="addpost">
       <router-link to="/add-post">
-        <button>Add post</button>
+        <button class="btnAddPost">Add post</button>
       </router-link>
     </div>
     <div class="wrapper">
@@ -113,7 +113,7 @@ li::before {
 
 li:nth-child(even) {
   flex-direction: row-reverse;
-  background: #bcb4a3;
+  background: #b8bcbb;
   margin-right: -2rem;
   margin-left: 2rem;
 }
@@ -124,5 +124,34 @@ li:nth-child(even) {
   font-weight: bold;
   text-decoration: none;
   color: white;
+}
+button {
+  font-size: 14px;
+  position: relative;
+  margin: auto;
+  color: #dcafa1;
+  padding: 1em 2.5em 1em 2.5em;
+  background: #e0dcdb;
+  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: 2px solid #e0dcdb;
+}
+
+.btnAddPost {
+  font-size: 18px;
+  position: relative;
+  margin: auto;
+  color: #dcafa1;
+  padding: 1em 2.5em 1em 2.5em;
+  background: #e0dcdb;
+  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: 2px solid #e0dcdb;
 }
 </style>

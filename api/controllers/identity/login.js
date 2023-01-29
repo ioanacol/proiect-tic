@@ -61,5 +61,6 @@ module.exports = async (req, res) => {
     email,
     idToken: token,
     localId: id,
+    username,
   });
 };

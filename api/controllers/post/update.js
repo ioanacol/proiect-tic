@@ -13,10 +13,6 @@ module.exports = async (req, res) => {
   if (!doc.exists) {
     throw error(404, 'Post not found');
   }
-  if (doc.data().author !== username) {
-    throw error(400, 'Not allowed to update comment');
-  }
-
   const payload = {
     date: toDateString(new Date()),
   };

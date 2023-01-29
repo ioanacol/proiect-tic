@@ -89,13 +89,14 @@ export default {
       };
       try {
         const response = await this.fetchData(user);
-        const { idToken, email, expiresIn, localId } = response;
+        const { idToken, email, expiresIn, localId, username } = response;
         if (idToken) {
           this.$store.dispatch("login", {
             email,
             expiresIn,
             idToken,
             localId,
+            username,
           });
           this.$router.replace("/");
         } else {
@@ -116,7 +117,7 @@ form {
 }
 
 h1 {
-  color: #fef9ff;
+  color: #2a6366;
   margin-bottom: 4rem;
 }
 .group {
@@ -135,7 +136,7 @@ h1 {
   margin-right: auto;
   border-bottom: 1px solid #fef9ff;
   background: transparent;
-  color: #fef9ff;
+  color: #2a6366;
 }
 
 .input:focus {
@@ -159,20 +160,20 @@ label {
 .input:valid label {
   top: -20px;
   font-size: 16px;
-  color: #dcafa1;
+  color: #2a6366;
 }
 
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fef9ff;
-  -webkit-box-shadow: 0 0 0px 1000px #969670 inset;
+  -webkit-text-fill-color: #2a6366;
+  -webkit-box-shadow: 0 0 0px 1000px #dcd8d5 inset;
 }
 
 .input:not(:focus-within) ~ label {
   top: -20px;
   font-size: 16px;
-  color: #dcafa1;
+  color: #2a6366;
 }
 
 .bar {
@@ -191,7 +192,7 @@ label {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #dcafa1;
+  background: #2a6366;
   transition: width 1s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -226,7 +227,7 @@ label {
 
 @keyframes inputHighlighter {
   from {
-    background: #dcafa1;
+    background: #2a6366;
   }
 
   to {
@@ -253,7 +254,7 @@ button:active {
 }
 
 button span {
-  color: #dcafa1;
+  color: #2a6366;
   font-family: "Sofia Sans";
 }
 
