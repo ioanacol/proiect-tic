@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <button><router-link to="/">Posts</router-link></button> |
+    <button><router-link to="/">Posts</router-link></button>
     <button v-if="isAuthenticated">
       <logout-button @logout="logout"></logout-button>
     </button>
@@ -59,5 +59,6 @@ button {
   font-size: larg;
   font-weight: bold;
   cursor: pointer;
+  font-size: 2.2rem;
 }
 </style>

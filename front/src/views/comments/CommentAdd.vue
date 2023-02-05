@@ -1,19 +1,14 @@
 <template>
   <div>
-    <h1>Edit post</h1>
+    <h1>Add comment</h1>
     <form @submit.prevent="submitForm" class="form">
-      <div class="title">
-        <label for="title">Title</label>
-        <input type="text" id="title" v-model.trim="title" />
-        <p v-if="errors.title" class="error">{{ errors.title }}</p>
-      </div>
       <div class="content">
-        <label for="content">Content</label>
+        <label>Comment</label>
         <textarea type="text" id="content" v-model.trim="content" />
         <p v-if="errors.content" class="error">{{ errors.content }}</p>
       </div>
       <div>
-        <button type="submit">Save</button>
+        <button type="submit">Post comment</button>
       </div>
     </form>
   </div>
@@ -21,9 +16,8 @@
 
 <script>
 import axios from "axios";
-
 export default {
-  name: "PostEdit",
+  name: "CommentAdd",
   props: {
     id: {
       type: String,
@@ -32,39 +26,25 @@ export default {
   },
   data() {
     return {
-      title: "",
       content: "",
       errors: {
-        title: "",
         content: "",
       },
     };
   },
-  created() {
-    this.getPost();
-  },
   methods: {
-    async getPost() {
-      const post = await axios.get(
-        `${process.env.VUE_APP_API_URL}/posts/${this.id}`
-      );
-      const { title, content } = post.data || {};
-      this.title = title;
-      this.content = content;
-    },
     async submitForm() {
       this.resetErrors();
       const valid = this.validateForm();
       if (!valid) {
         return;
       }
-      const post = {
-        title: this.title,
+      const comment = {
         content: this.content,
       };
-      await axios.put(
-        `${process.env.VUE_APP_API_URL}/admin/posts/${this.id}`,
-        post,
+      await axios.post(
+        `${process.env.VUE_APP_API_URL}/admin/posts/${this.id}/comments`,
+        comment,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -75,16 +55,11 @@ export default {
     },
     resetErrors() {
       this.errors = {
-        title: "",
         content: "",
       };
     },
     validateForm() {
       let valid = true;
-      if (this.title.trim().length === 0) {
-        this.errors.title = "Title is required";
-        valid = false;
-      }
       if (this.content.trim().length === 0) {
         this.errors.content = "Content is required";
         valid = false;
@@ -161,11 +136,6 @@ label {
   margin-bottom: 1rem;
   background-color: #dcd8d5;
   box-shadow: 0rem 0rem 2rem rgba(153, 153, 153, 0.655);
-  color: #946158;
-}
-
-.title input:focus {
-  outline: 0.1rem solid #737554;
 }
 
 .content {
@@ -193,8 +163,5 @@ textarea {
 
 textarea:focus {
   outline: 0.1rem solid #737554;
-}
-.error {
-  color: red;
 }
 </style>

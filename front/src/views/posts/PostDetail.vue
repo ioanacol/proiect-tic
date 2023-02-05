@@ -13,7 +13,9 @@
       <p class="postComments">Comments:</p>
       <span class="addComment">
         <div class="addComment">
-          <button class="btnAddComment">Add Comment</button>
+          <div>
+            <button @click="handleAddComment">Add Comment</button>
+          </div>
         </div>
       </span>
       <div class="commentSection">
@@ -31,13 +33,18 @@
                   Save comment
                 </button>
               </div>
+              <div>
+                <button @click="handleDeleteComment(id, comment.id)">
+                  Delete
+                </button>
+              </div>
             </div>
             <p class="commentAuthor">Posted by {{ comment.author }}</p>
             <p class="commentDate">on {{ comment.date }}</p>
             <p v-if="!getIsEditing(comment.id)" class="comment">
               {{ comment.content }}
             </p>
-            <input
+            <textarea
               v-else
               type="text"
               :value="comment.content"
@@ -120,6 +127,18 @@ export default {
     isMe(author) {
       return localStorage.getItem("username") === author;
     },
+    async handleDeleteComment(postId, commentId) {
+      this.error = null;
+      try {
+        await this.$store.dispatch("deleteComment", { postId, commentId });
+        this.getPost();
+      } catch (error) {
+        this.error = error.message;
+      }
+    },
+    handleAddComment() {
+      this.$router.push("/add-comments/" + this.id);
+    },
   },
 };
 </script>
@@ -142,11 +161,11 @@ export default {
 h2 {
   color: #737554;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 3rem;
 }
 .post {
   font-family: "Sofia Sans";
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: white;
@@ -155,7 +174,7 @@ h2 {
 
 .postDate {
   font-family: "Sofia Sans";
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
   color: #b67a70;
@@ -163,7 +182,7 @@ h2 {
 }
 .postAuthor {
   font-family: "Sofia Sans";
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #8f926d;
@@ -172,7 +191,7 @@ h2 {
 }
 .postComments {
   font-family: "Sofia Sans";
-  font-size: 25px;
+  font-size: 2.5rem;
   font-weight: bold;
   text-decoration: none;
   color: #b67a70;
@@ -181,15 +200,15 @@ h2 {
 }
 
 li {
-  border: 2px solid #b67a70;
-  border-radius: 15px;
+  border: 0.2rem solid #b67a70;
+  border-radius: 1rem;
   margin: 1rem;
   padding: 1rem;
 }
 
 .comment {
   font-family: "Sofia Sans";
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #946158;
@@ -197,7 +216,7 @@ li {
 
 .commentDate {
   font-family: "Sofia Sans";
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
   color: #b67a70;
@@ -205,7 +224,7 @@ li {
 }
 .commentAuthor {
   font-family: "Sofia Sans";
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #8f926d;
@@ -231,43 +250,43 @@ ul {
   position: relative;
   display: flex;
   justify-content: flex-end;
-  font-size: 12px;
+  font-size: 1.4rem;
   margin: auto;
   color: #dcafa1;
   padding: 1em 2.5em 1em 2.5em;
   background: #e0dcdb;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
-  border-radius: 25px;
-  border: 2px solid #e0dcdb;
+  border-radius: 2.5rem;
+  border: 0.2rem solid #e0dcdb;
   align-items: right;
   margin: 0.5rem;
 }
 .btnAddComment {
-  font-size: 12px;
+  font-size: 1.1rem;
   margin: auto;
   color: #dcafa1;
   padding: 1em 2.5em 1em 2.5em;
   background: #e0dcdb;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
-  border-radius: 25px;
-  border: 2px solid #e0dcdb;
+  border-radius: 2.5rem;
+  border: 0.2rem solid #e0dcdb;
   align-items: right;
 }
 button {
   position: relative;
   display: flex;
   justify-content: flex-start;
-  font-size: 9px;
+  font-size: 0.9rem;
   margin: auto;
   color: #dcafa1;
   padding: 1em 2.5em 1em 2.5em;
   background: #e0dcdb;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
-  border-radius: 25px;
-  border: 2px solid #e0dcdb;
+  border-radius: 2.5rem;
+  border: 0.2rem solid #e0dcdb;
   align-items: right;
 }
 
@@ -289,5 +308,25 @@ button {
   display: flex;
   justify-content: flex-start;
   margin: 1rem;
+}
+
+textarea {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 10rem;
+  resize: none;
+  border: 0.2rem solid #b67a70;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-family: inherit;
+  margin-bottom: 1rem;
+  background-color: #dcd8d5;
+  color: #946158;
+  font-size: 1.4rem;
+}
+
+textarea:focus {
+  outline: 0.1rem solid #737554;
 }
 </style>

@@ -118,7 +118,8 @@ form {
 
 h1 {
   color: #2a6366;
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
+  font-size: 2.2rem;
 }
 .group {
   position: relative;
@@ -127,14 +128,14 @@ h1 {
 }
 
 .input {
-  font-size: 16px;
-  padding: 10px 10px 10px 5px;
+  font-size: 1.6rem;
+  padding: 1rem 1rem 1rem 0.5rem;
   display: flex;
-  width: 200px;
+  width: 20rem;
   border: none;
   margin-left: auto;
   margin-right: auto;
-  border-bottom: 1px solid #fef9ff;
+  border-bottom: 0.1rem solid #fef9ff;
   background: transparent;
   color: #2a6366;
 }
@@ -145,12 +146,12 @@ h1 {
 
 label {
   color: #fef9ff;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 4.8rem;
-  top: 10px;
+  left: 7rem;
+  top: 1rem;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -158,8 +159,8 @@ label {
 
 .input:focus-within ~ label,
 .input:valid label {
-  top: -20px;
-  font-size: 16px;
+  top: -2rem;
+  font-size: 1.6rem;
   color: #2a6366;
 }
 
@@ -167,30 +168,30 @@ label {
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus {
   -webkit-text-fill-color: #2a6366;
-  -webkit-box-shadow: 0 0 0px 1000px #dcd8d5 inset;
+  -webkit-box-shadow: 0 0 0rem 100rem #dcd8d5 inset;
 }
 
 .input:not(:focus-within) ~ label {
-  top: -20px;
-  font-size: 16px;
+  top: -2rem;
+  font-size: 1.6rem;
   color: #2a6366;
 }
 
 .bar {
   position: relative;
   display: block;
-  margin-left: 4.4rem;
-  width: 200px;
-  margin-bottom: 20px;
+  margin-left: 5rem;
+  width: 20rem;
+  margin-bottom: 4rem;
   background-color: #fef9ff;
 }
 
 .bar:before,
 .bar:after {
   content: "";
-  height: 2px;
+  height: 0.2rem;
   width: 0;
-  bottom: 1px;
+  bottom: 0.1rem;
   position: absolute;
   background: #2a6366;
   transition: width 1s ease all;
@@ -214,9 +215,9 @@ label {
 .highlight {
   position: absolute;
   height: 60%;
-  width: 200px;
+  width: 20rem;
   top: 25%;
-  left: 4.8rem;
+  left: 11rem;
   pointer-events: none;
   opacity: 0.5;
 }
@@ -237,10 +238,10 @@ label {
 }
 
 button {
-  font-size: 18px;
+  font-size: 1.7rem;
   position: relative;
   margin: auto;
-  padding: 1em 2.5em 1em 2.5em;
+  padding: 1em 1.8em 1em 1.8em;
   border: none;
   background: #fef9ff;
   transition: all 0.1s linear;
@@ -283,12 +284,12 @@ button:hover .border {
   overflow: hidden;
   background-color: #dcd8d5;
   margin: auto;
-  padding: 40px 30px 30px 30px;
-  border-radius: 10px;
+  padding: 4rem 3rem 3rem 3rem;
+  border-radius: 1rem;
   position: absolute;
-  width: 400px;
-  height: 500px;
-  box-shadow: 5px 10px 10px #999;
+  width: 40rem;
+  height: 50rem;
+  box-shadow: 0.5rem 1rem 1rem #999;
   transform: translateX(-50%);
   left: 50%;
   margin-top: 5rem;
@@ -298,13 +299,13 @@ button:hover .border {
   position: absolute;
   right: 4.8rem;
   top: -1.21rem;
-  font-size: 12px;
+  font-size: 1.2rem;
   color: rgb(215, 70, 70);
 }
 
 .errorLogin {
   position: absolute;
-  font-size: 12px;
+  font-size: 1.2rem;
 
   color: rgb(215, 70, 70);
 }

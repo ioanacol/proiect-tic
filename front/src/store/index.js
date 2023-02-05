@@ -95,6 +95,20 @@ export default createStore({
       const posts = await axios.get(`${process.env.VUE_APP_API_URL}/posts`);
       commit("setPosts", posts?.data || []);
     },
+    async deleteComment({ commit }, { postId: idPost, commentId: idComment }) {
+      await axios.delete(
+        `${process.env.VUE_APP_API_URL}/admin/posts/${idPost}/comments/${idComment}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const posts = await axios.get(
+        `${process.env.VUE_APP_API_URL}/posts/${idPost}`
+      );
+      commit("setPosts", posts?.data || []);
+    },
   },
   modules: {},
 });

@@ -4,7 +4,9 @@
     <h1>POSTS</h1>
     <div class="addpost">
       <router-link to="/add-post">
-        <button class="btnAddPost">Add post</button>
+        <div v-if="isAdmin">
+          <button class="btnAddPost">Add post</button>
+        </div>
       </router-link>
     </div>
     <div class="wrapper">
@@ -65,14 +67,14 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&display=swap");
 .wrapper {
-  max-width: 600px;
+  max-width: 60rem;
   margin: 0 auto;
 }
 
 h1 {
   color: #dcafa1;
   font-weight: bold;
-  font-size: 70px;
+  font-size: 7rem;
 }
 
 ol {
@@ -120,13 +122,13 @@ li:nth-child(even) {
 
 .text {
   font-family: "Sofia Sans";
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
   color: white;
 }
 button {
-  font-size: 14px;
+  font-size: 1.4rem;
   position: relative;
   margin: auto;
   color: #dcafa1;
@@ -136,12 +138,12 @@ button {
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
-  border-radius: 25px;
-  border: 2px solid #e0dcdb;
+  border-radius: 2.5rem;
+  border: 0.2rem solid #e0dcdb;
 }
 
 .btnAddPost {
-  font-size: 18px;
+  font-size: 1.8rem;
   position: relative;
   margin: auto;
   color: #dcafa1;
@@ -151,7 +153,7 @@ button {
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
-  border-radius: 25px;
-  border: 2px solid #e0dcdb;
+  border-radius: 2.5rem;
+  border: 0.2rem solid #e0dcdb;
 }
 </style>
