@@ -26,6 +26,9 @@ export default createStore({
     getPosts(state) {
       return state.posts;
     },
+    getComments(state) {
+      return state.comments;
+    },
     isAdmin(state) {
       return (
         state.email === "ioana@email.com" ||
@@ -42,10 +45,13 @@ export default createStore({
     setPosts(state, payload) {
       state.posts = payload;
     },
+    setComments(state, payload) {
+      state.comments = payload;
+    },
   },
   actions: {
     login: ({ commit, dispatch }, responseData) => {
-      const expiresIn = +responseData.expiresIn * 1000;
+      const expiresIn = +responseData.expiresIn * 5000;
 
       localStorage.setItem("email", responseData.email);
       localStorage.setItem("token", responseData.idToken);
@@ -79,6 +85,12 @@ export default createStore({
     async loadPosts({ commit }) {
       const posts = await axios.get(`${process.env.VUE_APP_API_URL}/posts`);
       commit("setPosts", posts?.data || []);
+    },
+    async loadComments({ commit }) {
+      const comments = await axios.get(
+        `${process.env.VUE_APP_API_URL}/comments`
+      );
+      commit("setComments", comments?.data || []);
     },
     async loadPost(_, id) {
       const post = await axios.get(

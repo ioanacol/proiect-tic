@@ -1,58 +1,68 @@
 <template>
-  <div>
-    <div class="page">
-      <div class="divButton">
-        <div>
-          <button class="btnEditPost" @click="handleEdit">Edit post</button>
-        </div>
+  <div class="page">
+    <div class="divButton">
+      <div>
+        <button v-if="isAdmin" class="btnEditPost" @click="handleEdit">
+          EDIT
+        </button>
       </div>
-      <p class="postDate">Posted on {{ date }}</p>
-      <h2>{{ title }}</h2>
-      <p class="postAuthor">{{ author }}</p>
-      <p class="post">{{ content }}</p>
-      <p class="postComments">Comments:</p>
+    </div>
+    <p class="postDate">Posted on {{ date }}</p>
+    <h2>{{ title }}</h2>
+    <p class="postAuthor">IOANA COLCEAG</p>
+    <p class="post">{{ content }}</p>
+    <div class="comments-title-button">
+      <span class="postComments">COMMENTS</span>
       <span class="addComment">
-        <div class="addComment">
-          <div>
-            <button @click="handleAddComment">Add Comment</button>
-          </div>
-        </div>
+        <button v-if="isAuthenticated" @click="handleAddComment">
+          Add Comment
+        </button>
       </span>
-      <div class="commentSection">
-        <ul>
-          <li v-for="comment in comments" :key="comment">
-            <div class="divButtonComment">
-              <div v-if="isMe(comment.author)">
-                <button
-                  v-if="!getIsEditing(comment.id)"
-                  @click="handleEditComment(comment.id)"
-                >
-                  Edit comment
-                </button>
-                <button v-else @click="saveComment(comment.id)">
-                  Save comment
-                </button>
-              </div>
-              <div>
-                <button @click="handleDeleteComment(id, comment.id)">
-                  Delete
-                </button>
-              </div>
+    </div>
+    <div class="separating-line"></div>
+    <div class="commentSection">
+      <ul>
+        <li v-for="comment in comments" :key="comment">
+          <div class="divButtonComment">
+            <div v-if="isMe(comment.author)">
+              <button
+                class="insideComm"
+                v-if="!getIsEditing(comment.id)"
+                @click="handleEditComment(comment.id)"
+              >
+                Edit comment
+              </button>
+              <button
+                class="insideComm"
+                v-else
+                @click="saveComment(comment.id)"
+              >
+                Save comment
+              </button>
             </div>
-            <p class="commentAuthor">Posted by {{ comment.author }}</p>
-            <p class="commentDate">on {{ comment.date }}</p>
-            <p v-if="!getIsEditing(comment.id)" class="comment">
-              {{ comment.content }}
-            </p>
-            <textarea
-              v-else
-              type="text"
-              :value="comment.content"
-              ref="inputComment"
-            />
-          </li>
-        </ul>
-      </div>
+            <div>
+              <button
+                class="insideComm"
+                v-if="isAdmin"
+                @click="handleDeleteComment(id, comment.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          <p class="commentAuthor">Posted by {{ comment.author }}</p>
+          <p class="commentDate">on {{ comment.date }}</p>
+          <p v-if="!getIsEditing(comment.id)" class="comment">
+            {{ comment.content }}
+          </p>
+          <textarea
+            v-else
+            type="text"
+            :value="comment.content"
+            ref="inputComment"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -93,6 +103,12 @@ export default {
     },
     comments() {
       return this?.post?.comments || [];
+    },
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
+    isAuthenticated() {
+      return this.isLoggedIn || this.$store.getters.token !== null;
     },
   },
   methods: {
@@ -145,7 +161,7 @@ export default {
 
 <style scoped>
 .page {
-  background-color: #d0c8c8;
+  background-color: #f8f7f760;
   align-items: left;
   gap: 1rem;
   padding: 1.5rem;
@@ -153,23 +169,50 @@ export default {
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.1);
   text-align: left;
   margin-top: 3rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0.9;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 h2 {
   color: #737554;
   font-weight: bold;
   font-size: 3rem;
+  text-align: left;
+  overflow: hidden;
+  margin-left: 1rem;
+}
+
+.comments-title-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.postAuthor:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-right: -100%;
+  border-bottom: 1px solid #737554;
+  margin-top: 2rem;
 }
 .post {
   font-family: "Sofia Sans";
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-decoration: none;
-  color: white;
+  color: #2b470d;
   margin: 1rem;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 .postDate {
@@ -200,18 +243,19 @@ h2 {
 }
 
 li {
-  border: 0.2rem solid #b67a70;
   border-radius: 1rem;
   margin: 1rem;
   padding: 1rem;
+  border-bottom: 0.1rem solid #946158;
 }
 
 .comment {
   font-family: "Sofia Sans";
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-decoration: none;
   color: #946158;
+  text-align: left;
 }
 
 .commentDate {
@@ -232,7 +276,6 @@ li {
 }
 
 .commentSection {
-  background-color: #dbd8d7;
   align-items: left;
   gap: 1rem;
   padding: 1.5rem;
@@ -252,42 +295,55 @@ ul {
   justify-content: flex-end;
   font-size: 1.4rem;
   margin: auto;
-  color: #dcafa1;
+  color: #946158;
   padding: 1em 2.5em 1em 2.5em;
-  background: #e0dcdb;
+  background: #f8f7f7;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
+  border: 0.2rem solid #f8f7f7;
   align-items: right;
   margin: 0.5rem;
+  background-color: transparent;
 }
-.btnAddComment {
+button {
+  display: inline-block;
+  justify-content: flex-end;
   font-size: 1.1rem;
   margin: auto;
-  color: #dcafa1;
+  color: #946158;
   padding: 1em 2.5em 1em 2.5em;
-  background: #e0dcdb;
+  background-color: #f8f7f7;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
-  align-items: right;
+  border: 0.2rem solid #f8f7f7;
+  align-items: left;
 }
-button {
+
+.separating-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #946158;
+  margin-bottom: 2rem;
+}
+
+.insideComm {
   position: relative;
   display: flex;
   justify-content: flex-start;
   font-size: 0.9rem;
   margin: auto;
-  color: #dcafa1;
+  color: #946158;
   padding: 1em 2.5em 1em 2.5em;
-  background: #e0dcdb;
+  background-color: #f8f7f7;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
+  border: 0.2rem solid #f8f7f7;
   align-items: right;
+  margin: 0.5rem;
 }
 
 .divButton {
@@ -313,6 +369,7 @@ button {
 textarea {
   margin-left: auto;
   margin-right: auto;
+  font-size: 1.8rem;
   width: 100%;
   height: 10rem;
   resize: none;
@@ -321,9 +378,10 @@ textarea {
   padding: 1rem;
   font-family: inherit;
   margin-bottom: 1rem;
-  background-color: #dcd8d5;
+  background-color: #f8f7f7;
   color: #946158;
   font-size: 1.4rem;
+  text-align: left;
 }
 
 textarea:focus {

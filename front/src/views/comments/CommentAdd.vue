@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h1>Add comment</h1>
     <form @submit.prevent="submitForm" class="form">
       <div class="content">
-        <label>Comment</label>
+        <label>Leave your impression here!</label>
         <textarea type="text" id="content" v-model.trim="content" />
         <p v-if="errors.content" class="error">{{ errors.content }}</p>
       </div>
@@ -61,7 +60,7 @@ export default {
     validateForm() {
       let valid = true;
       if (this.content.trim().length === 0) {
-        this.errors.content = "Content is required";
+        this.errors.content = "Content is required!";
         valid = false;
       }
       return valid;
@@ -71,20 +70,13 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: #dcafa1;
-  font-weight: bold;
-  font-size: 4rem;
-  margin-top: 2rem;
-}
 .form {
-  background-color: #d0c8c8;
+  background-color: transparent;
   align-items: left;
   gap: 1rem;
   width: 60%;
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.1);
   text-align: left;
   margin-top: 3rem;
   margin-left: auto;
@@ -98,13 +90,13 @@ button {
   justify-content: flex-start;
   font-size: 1.3rem;
   margin: auto;
-  color: #dcafa1;
+  color: #946158;
   padding: 1rem 4rem;
-  background: #e0dcdb;
+  background: #f8f7f7;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.189);
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
+  border: 0.2rem solid #f8f7f7;
   align-items: right;
   cursor: pointer;
 }
@@ -134,7 +126,7 @@ label {
   border-radius: 1rem;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  background-color: #dcd8d5;
+  background-color: #f8f7f7;
   box-shadow: 0rem 0rem 2rem rgba(153, 153, 153, 0.655);
 }
 
@@ -148,20 +140,30 @@ label {
 textarea {
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
-  height: 20rem;
+  width: 70%;
+  height: 10rem;
   resize: none;
   border: none;
   border-radius: 1rem;
   padding: 1rem;
   font-family: inherit;
   margin-bottom: 1rem;
-  background-color: #dcd8d5;
+  background-color: #f8f7f7;
   box-shadow: 0rem 0rem 2rem rgba(153, 153, 153, 0.655);
   color: #946158;
+  text-align: left;
 }
 
 textarea:focus {
   outline: 0.1rem solid #737554;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 1.5rem;
+  font-weight: bold;
+  color: rgb(215, 70, 70);
 }
 </style>

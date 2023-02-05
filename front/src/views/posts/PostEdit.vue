@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Edit post</h1>
+    <h1>EDIT ARTICLE</h1>
     <form @submit.prevent="submitForm" class="form">
       <div class="title">
         <label for="title">Title</label>
@@ -82,11 +82,11 @@ export default {
     validateForm() {
       let valid = true;
       if (this.title.trim().length === 0) {
-        this.errors.title = "Title is required";
+        this.errors.title = "Title is required!";
         valid = false;
       }
       if (this.content.trim().length === 0) {
-        this.errors.content = "Content is required";
+        this.errors.content = "Content is required!";
         valid = false;
       }
       return valid;
@@ -103,10 +103,11 @@ h1 {
   margin-top: 2rem;
 }
 .form {
-  background-color: #d0c8c8;
+  background-color: transparent;
   align-items: left;
   gap: 1rem;
   width: 60%;
+  height: 70rem;
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.1);
@@ -118,20 +119,20 @@ h1 {
 }
 
 button {
-  position: relative;
   display: flex;
-  justify-content: flex-start;
-  font-size: 1.3rem;
-  margin: auto;
-  color: #dcafa1;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #946158;
   padding: 1rem 4rem;
-  background: #e0dcdb;
+  background: #f8f7f7;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.189);
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
-  align-items: right;
+  border: 0.1rem solid #f8f7f7;
+  align-items: center;
+  margin: auto;
   cursor: pointer;
+  opacity: 0.9;
 }
 
 label {
@@ -158,8 +159,8 @@ label {
   border: none;
   border-radius: 1rem;
   padding: 0.5rem;
-  margin-bottom: 1rem;
-  background-color: #dcd8d5;
+  margin-bottom: 2rem;
+  background-color: #f8f7f7;
   box-shadow: 0rem 0rem 2rem rgba(153, 153, 153, 0.655);
   color: #946158;
 }
@@ -179,22 +180,28 @@ textarea {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 20rem;
+  height: 40rem;
   resize: none;
   border: none;
   border-radius: 1rem;
   padding: 1rem;
   font-family: inherit;
-  margin-bottom: 1rem;
-  background-color: #dcd8d5;
+  margin-bottom: 3rem;
+  background-color: #f8f7f7;
   box-shadow: 0rem 0rem 2rem rgba(153, 153, 153, 0.655);
   color: #946158;
+  text-align: left;
 }
 
 textarea:focus {
   outline: 0.1rem solid #737554;
 }
 .error {
-  color: red;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 1.5rem;
+  font-weight: bold;
+  color: rgb(215, 70, 70);
 }
 </style>

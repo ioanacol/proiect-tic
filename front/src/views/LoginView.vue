@@ -117,7 +117,7 @@ form {
 }
 
 h1 {
-  color: #2a6366;
+  color: #2b470d;
   margin-bottom: 8rem;
   font-size: 2.2rem;
 }
@@ -137,7 +137,7 @@ h1 {
   margin-right: auto;
   border-bottom: 0.1rem solid #fef9ff;
   background: transparent;
-  color: #2a6366;
+  color: #2b470d;
 }
 
 .input:focus {
@@ -161,26 +161,27 @@ label {
 .input:valid label {
   top: -2rem;
   font-size: 1.6rem;
-  color: #2a6366;
+  color: #2b470d;
 }
 
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #2a6366;
-  -webkit-box-shadow: 0 0 0rem 100rem #dcd8d5 inset;
+  -webkit-text-fill-color: #2b470d;
+  -webkit-box-shadow: 0 0 0rem 100rem #dbd8d7 inset;
 }
 
 .input:not(:focus-within) ~ label {
   top: -2rem;
   font-size: 1.6rem;
-  color: #2a6366;
+  color: #2b470d;
 }
 
 .bar {
   position: relative;
   display: block;
-  margin-left: 5rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 20rem;
   margin-bottom: 4rem;
   background-color: #fef9ff;
@@ -193,7 +194,7 @@ label {
   width: 0;
   bottom: 0.1rem;
   position: absolute;
-  background: #2a6366;
+  background: #2b470d;
   transition: width 1s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -213,11 +214,10 @@ label {
 }
 
 .highlight {
-  position: absolute;
+  position: relative;
   height: 60%;
   width: 20rem;
   top: 25%;
-  left: 11rem;
   pointer-events: none;
   opacity: 0.5;
 }
@@ -228,7 +228,7 @@ label {
 
 @keyframes inputHighlighter {
   from {
-    background: #2a6366;
+    background: #2b470d;
   }
 
   to {
@@ -238,16 +238,17 @@ label {
 }
 
 button {
-  font-size: 1.7rem;
   position: relative;
   margin: auto;
-  padding: 1em 1.8em 1em 1.8em;
+  padding: 1rem 3rem;
   border: none;
+  border-radius: 20rem;
   background: #fef9ff;
   transition: all 0.1s linear;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   margin-top: 5rem;
   font-weight: bolder;
+  outline: 0px solid #fef9ff;
 }
 
 button:active {
@@ -255,11 +256,12 @@ button:active {
 }
 
 button span {
-  color: #2a6366;
+  color: #2b470d;
   font-family: "Sofia Sans";
+  font-size: 1.5rem;
 }
 
-button .border {
+/* button .border {
   position: absolute;
   border: 0.15em solid #fef9ff;
   transition: all 0.3s 0.08s linear;
@@ -268,21 +270,16 @@ button .border {
   width: 7em;
   height: 3em;
   transform: translate(-50%, -50%);
-}
+} */
 
-button:hover .border {
-  display: block;
-  width: 8.1em;
-  height: 3.7em;
-}
-
-.full-rounded {
-  border-radius: 2em;
+button:hover {
+  outline: 2px solid #fef9ff;
+  outline-offset: 3px;
 }
 
 .main {
   overflow: hidden;
-  background-color: #dcd8d5;
+  background: #dbd8d7;
   margin: auto;
   padding: 4rem 3rem 3rem 3rem;
   border-radius: 1rem;
@@ -293,7 +290,7 @@ button:hover .border {
   transform: translateX(-50%);
   left: 50%;
   margin-top: 5rem;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 .error {
   position: absolute;
@@ -313,11 +310,13 @@ button:hover .border {
 
 <style>
 body {
-  background-image: url("C:/Users/ioana/Downloads/William.png");
+  background-image: url("C:/Users/ioana/Downloads/William (2).png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #f2dfd7;
+}
+body::before {
+  opacity: 0.5;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <main>
     <p v-if="error !== nul">{{ error }}</p>
-    <h1>POSTS</h1>
+    <h1>ARTICLES</h1>
     <div class="addpost">
       <router-link to="/add-post">
         <div v-if="isAdmin">
-          <button class="btnAddPost">Add post</button>
+          <button class="btnAddPost">Write new article</button>
         </div>
       </router-link>
     </div>
@@ -67,14 +67,15 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&display=swap");
 .wrapper {
-  max-width: 60rem;
+  max-width: 70rem;
   margin: 0 auto;
 }
 
 h1 {
   color: #dcafa1;
   font-weight: bold;
-  font-size: 7rem;
+  font-size: 70px;
+  margin-top: 2rem;
 }
 
 ol {
@@ -95,19 +96,20 @@ li {
   border-radius: 1rem;
   width: calc(100% - 2rem);
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.1);
+  justify-content: space-between;
 }
 
 li::before {
   counter-increment: list-item;
   content: counter(list-item);
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
   width: 2em;
   height: 2em;
-  background: #e0dcdb;
+  background: #f8f7f7;
   flex: 0 0 auto;
   border-radius: 50%;
-  color: white;
+  color: #dcafa1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,8 +118,8 @@ li::before {
 li:nth-child(even) {
   flex-direction: row-reverse;
   background: #b8bcbb;
-  margin-right: -2rem;
-  margin-left: 2rem;
+  margin-right: -4rem;
+  margin-left: 4rem;
 }
 
 .text {
@@ -133,13 +135,14 @@ button {
   margin: auto;
   color: #dcafa1;
   padding: 1em 2.5em 1em 2.5em;
-  background: #e0dcdb;
+  background: #f8f7f7;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
+  cursor: pointer;
+  border: 2px solid #f8f7f7;
 }
 
 .btnAddPost {
@@ -148,12 +151,13 @@ button {
   margin: auto;
   color: #dcafa1;
   padding: 1em 2.5em 1em 2.5em;
-  background: #e0dcdb;
+  background: #f8f7f7;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
   border-radius: 2.5rem;
-  border: 0.2rem solid #e0dcdb;
+  cursor: pointer;
+  border: 2px solid #f8f7f7;
 }
 </style>
