@@ -1,24 +1,14 @@
 <template>
   <p v-if="error !== nul">{{ error }}</p>
   <h1>ENGAGEMENT</h1>
-  <select
-    name="month"
-    id="month"
-    @click="handleSelect(this.month)"
-    v-model="selected"
-  >
-    <option
-      v-for="listValue in availableMonths"
-      :key="listValue"
-      :value="listValue"
-      :selected="listValue === modelValue"
-    >
+  <select name="month" id="month" v-model="selected">
+    <option v-for="listValue in availableMonths" :key="listValue">
       {{ listValue }}
     </option>
   </select>
   <div class="wrapper">
     <ol role="list">
-      <li v-for="comment in comments" :key="comment.id">
+      <li v-for="comment in sortedArray" :key="comment.id">
         <div class="text">
           <p>{{ comment.author }}</p>
           <p>{{ comment.date }}</p>
@@ -39,8 +29,8 @@ export default {
   data() {
     return {
       error: null,
-      selected: "IANUARIE",
       availableMonths: [
+        "PLEASE SELECT MONTH TO SEE ENGAGEMENT",
         "IANUARIE",
         "FEBRUARIE",
         "MARTIE",
@@ -54,35 +44,55 @@ export default {
         "NOIEMBRIE",
         "DECEMBRIE",
       ],
-      month: "",
+      selected: "PLEASE SELECT MONTH TO SEE ENGAGEMENT",
     };
   },
   computed: {
     comments() {
-      console.log(this.$store.getters.getComments);
-      // const monthToSearch = this.availableMonths[this.month];
-      // console.log(monthToSearch);
       return this.$store.getters.getComments;
     },
-    // filteredComments() {
-    //   // const monthToSearch = this.availableMonths[this.month];
-    //   // console.log(monthToSearch);
-    //   const allComments = this.$store.getters.getComments;
-    //   // return allComments.filter(
-    //   //   (comment) => toUpper(comment.date.getFullMonth()) === this.month
-    //   // );
-    // },
-
     isAdmin() {
       return this.$store.getters.isAdmin;
+    },
+    sortedArray() {
+      let commentsArray = this.$store.getters.getComments;
+      const monthSelected = this.selected;
+      if (monthSelected === "PLEASE SELECT MONTH TO SEE ENGAGEMENT")
+        return commentsArray;
+      else {
+        const availableMonths = [
+          "IANUARIE",
+          "FEBRUARIE",
+          "MARTIE",
+          "APRILIE",
+          "MAI",
+          "IUNIE",
+          "IULIE",
+          "AUGUST",
+          "SEPTEMBRIE",
+          "OCTOMBRIE",
+          "NOIEMBRIE",
+          "DECEMBRIE",
+        ];
+
+        let allComments = [];
+        commentsArray.forEach((comment) => {
+          if (
+            availableMonths[parseInt(comment.date.split("-")[1], 10) - 1] ===
+            monthSelected
+          ) {
+            allComments.push(comment);
+          }
+        });
+
+        console.log(allComments);
+        return allComments;
+      }
     },
   },
   methods: {
     async loadComments() {
       await this.$store.dispatch("loadComments");
-    },
-    handleSelect(month) {
-      console.log(month);
     },
   },
 };
@@ -137,7 +147,7 @@ select {
   border-radius: 1rem;
   padding: 1rem 1em;
   margin: 3rem;
-  width: 20%;
+  width: 30%;
   font-family: inherit;
   font-size: inherit;
   cursor: inherit;

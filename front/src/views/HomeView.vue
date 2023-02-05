@@ -11,7 +11,7 @@
     </div>
     <div class="wrapper">
       <ol role="list">
-        <li v-for="post in posts" :key="post.id">
+        <li v-for="post in sortedArray" :key="post.id">
           <div>
             <router-link class="text" :to="'/posts/' + post.id">
               {{ post.title }} {{ posts.date }}
@@ -46,6 +46,22 @@ export default {
 
     isAdmin() {
       return this.$store.getters.isAdmin;
+    },
+    sortedArray() {
+      let allPosts = this.$store.getters.getPosts;
+      allPosts = allPosts.sort((a, b) => {
+        let fa = a.title,
+          fb = b.title;
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+
+      return allPosts;
     },
   },
   methods: {
