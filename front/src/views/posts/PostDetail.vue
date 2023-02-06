@@ -43,7 +43,7 @@
             <div>
               <button
                 class="insideComm"
-                v-if="isAdmin"
+                v-if="isMe(comment.author) || isAdmin"
                 @click="handleDeleteComment(id, comment.id)"
               >
                 Delete
@@ -172,7 +172,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   opacity: 0.9;
-  width: 50%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -200,7 +199,7 @@ h2 {
   width: 100%;
   height: 100%;
   margin-right: -100%;
-  border-bottom: 1px solid #737554;
+  border-bottom: 0.1rem solid #737554;
   margin-top: 2rem;
 }
 .post {
@@ -324,7 +323,7 @@ button {
 .separating-line {
   display: block;
   width: 100%;
-  height: 1px;
+  height: 0.1rem;
   background-color: #946158;
   margin-bottom: 2rem;
 }

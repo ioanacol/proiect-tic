@@ -90,8 +90,8 @@ export default {
 h1 {
   color: #dcafa1;
   font-weight: bold;
-  font-size: 70px;
-  margin-top: 2rem;
+  font-size: 6rem;
+  margin: 2rem;
 }
 
 ol {
@@ -110,7 +110,6 @@ li {
   background: #d9c3c6;
   padding: 1.5rem;
   border-radius: 1rem;
-  width: calc(100% - 2rem);
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.1);
   justify-content: space-between;
 }
@@ -120,8 +119,8 @@ li::before {
   content: counter(list-item);
   font-size: 5rem;
   font-weight: 700;
-  width: 2em;
-  height: 2em;
+  width: 10rem;
+  height: 10rem;
   background: #f8f7f7;
   flex: 0 0 auto;
   border-radius: 50%;
@@ -150,15 +149,15 @@ button {
   position: relative;
   margin: auto;
   color: #dcafa1;
-  padding: 1em 2.5em 1em 2.5em;
+  padding: 2rem 3rem;
   background: #f8f7f7;
-  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
   border-radius: 2.5rem;
   cursor: pointer;
-  border: 2px solid #f8f7f7;
+  border: 0.2rem solid #f8f7f7;
 }
 
 .btnAddPost {
@@ -166,14 +165,14 @@ button {
   position: relative;
   margin: auto;
   color: #dcafa1;
-  padding: 1em 2.5em 1em 2.5em;
+  padding: 2rem 3rem;
   background: #f8f7f7;
-  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
   border-radius: 2.5rem;
   cursor: pointer;
-  border: 2px solid #f8f7f7;
+  border: 0.2rem solid #f8f7f7;
 }
 </style>

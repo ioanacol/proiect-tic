@@ -37,4 +37,73 @@ nav a.router-link-exact-active {
   color: #2b470d;
   text-decoration: underline;
 }
+
+/* Tablet */
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 62.5%;
+  }
+  .form {
+    width: 90%;
+  }
+  .page {
+    width: 90%;
+  }
+  textarea {
+    width: 90%;
+  }
+  .name {
+    display: none;
+  }
+  .nameSpan {
+    display: none;
+  }
+  li {
+    width: calc(100% - 2rem);
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 50%;
+  }
+  .form {
+    width: 90%;
+  }
+  .page {
+    width: 90%;
+  }
+  textarea {
+    width: 90%;
+  }
+  .name {
+    display: none;
+  }
+  .nameSpan {
+    display: none;
+  }
+  li {
+    width: calc(100% - 2rem);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  html {
+    font-size: 75%;
+  }
+  .form {
+    width: 50%;
+  }
+  .page {
+    width: 50%;
+  }
+  textarea {
+    width: 80%;
+  }
+  li {
+    width: calc(100% - 2rem);
+  }
+}
 </style>

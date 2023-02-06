@@ -155,7 +155,6 @@ label {
 textarea {
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
   height: 50rem;
   resize: none;
   border: none;

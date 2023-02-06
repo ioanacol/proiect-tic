@@ -7,7 +7,7 @@ const randomDate = () => {
       string: false,
       american: false,
       min: new Date('2022-01-01'),
-      max: new Date(),
+      max: new Date('2023-02-05'),
     })
   );
 };

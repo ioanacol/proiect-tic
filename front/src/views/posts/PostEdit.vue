@@ -149,7 +149,6 @@ label {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -179,7 +178,6 @@ label {
 textarea {
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
   height: 40rem;
   resize: none;
   border: none;

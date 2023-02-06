@@ -147,7 +147,7 @@ select {
   border-radius: 1rem;
   padding: 1rem 1em;
   margin: 3rem;
-  width: 30%;
+  width: 25%;
   font-family: inherit;
   font-size: inherit;
   cursor: inherit;

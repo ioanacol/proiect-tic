@@ -245,7 +245,7 @@ button {
   border-radius: 20rem;
   background: #fef9ff;
   transition: all 0.1s linear;
-  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
   margin-top: 5rem;
   font-weight: bolder;
   outline: 0px solid #fef9ff;
