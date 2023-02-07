@@ -8,6 +8,7 @@
   </select>
   <div class="wrapper">
     <ol role="list">
+      <p class="numberComments">{{ sortedArray.length }} comments</p>
       <li v-for="comment in sortedArray" :key="comment.id">
         <div class="text">
           <p>{{ comment.author }}</p>
@@ -57,9 +58,20 @@ export default {
     sortedArray() {
       let commentsArray = this.$store.getters.getComments;
       const monthSelected = this.selected;
-      if (monthSelected === "PLEASE SELECT MONTH TO SEE ENGAGEMENT")
+      if (monthSelected === "PLEASE SELECT MONTH TO SEE ENGAGEMENT") {
+        commentsArray = commentsArray.sort((a, b) => {
+          let fa = a.date.split("-")[1],
+            fb = b.date.split("-")[1];
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        });
         return commentsArray;
-      else {
+      } else {
         const availableMonths = [
           "IANUARIE",
           "FEBRUARIE",
@@ -85,7 +97,18 @@ export default {
           }
         });
 
-        console.log(allComments);
+        allComments = allComments.sort((a, b) => {
+          let fa = a.date.split("-")[0],
+            fb = b.date.split("-")[0];
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        });
+
         return allComments;
       }
     },
@@ -109,6 +132,11 @@ h1 {
   font-weight: bold;
   font-size: 5rem;
   margin: 2rem;
+}
+.numberComments {
+  color: #dcafa1;
+  font-size: 2rem;
+  margin: 1rem;
 }
 
 ol {
